@@ -3,7 +3,8 @@ import Button from "../Button";
 import Coin from "../Coin";
 import Moive from "../components/Movie";
 import Todo from "../Todo";
-import styles from "../App.module.css"
+import styles from "../Home.module.css"
+
 function Hello(){
     useEffect(()=>{
       console.log("생성됨..한번만실행?");
@@ -22,7 +23,7 @@ function Hello(){
     </div>;
   }
 function Home(){
-    const [counter,setValue] = useState(0);
+  const [counter,setValue] = useState(0);
   const onClick = () => setValue((prev)=>prev+1);
   const [keyword,setKeyword] = useState("");
   const onChange = (event)=>{setKeyword(event.target.value);}
@@ -39,7 +40,7 @@ function Home(){
       console.log("검색어나 숫자 변경시 실행");
   },[keyword,counter]);
   return (
-    <div>
+    <div >
       <input value={keyword} onChange={onChange} type="text" placeholder="검색하세요"/>
       <h1 className={styles.title}>{counter}</h1>
       <button onClick={onClick}>클릭하세요</button>

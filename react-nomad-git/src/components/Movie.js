@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Movie.module.css";
+
 function Moive(){
     const [loading,setLoading] = useState(true);
     const [movies,setMovies] = useState([]);
@@ -19,19 +21,22 @@ function Moive(){
     },[]);
 
     return( 
-    <div>
+    <div className={styles.container}>
         {loading? (
-            <h1>로딩중...</h1>
+            <div className={styles.loader}>
+                <h1>로딩중...</h1>
+            </div>
         ) : (
-        <div>
+        <div className={styles.movies}>
             {movies.map((movie) => 
             <div key={movie.id}>
-                <img src={movie.medium_cover_image}/>
-                <h2>
+                <img src={movie.medium_cover_image} alt={movie.title} className={styles.movie__img}/>
+                <h2 className={styles.movie__title}>    
                     <Link to={`/movie/${movie.id}`}> {movie.title}</Link>
                 </h2>
-                <p>{movie.summary}</p>
-                <ul>
+                <h3 className={styles.movie__year}>{movie.year}</h3>
+                <p>{movie.summary.length > 235 ? `${movie.summary.slice(0, 235)}...` : movie.summary}</p>
+                <ul className={styles.movie__genres}>
                     {movie.genres.map(g => <li key={g}>{g}</li>)}
                 </ul>
             </div>)}
